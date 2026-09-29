@@ -1,28 +1,18 @@
 import express from 'express';
 import cors from 'cors';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import 'dotenv/config'
 
 const app = express();
-const PORT = 3000;
-const publicPath = path.join(path.dirname(fileURLToPath(import.meta.url)), 'public');
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors());
-app.use(express.static(publicPath));
+app.use(express.static('public'));
 
 // Lista de usuários cadastrados em memória
 const users = [];
 
 // Entrega o front-end e mantém as APIs no mesmo servidor.
-app.get('/', (req, res) => {
-    return res.sendFile(path.join(publicPath, 'index.html'));
-});
-
-// Rota para listar usuários cadastrados
-app.get('/usuarios', (req, res) => {
-    return res.status(200).json(users);
-});
 
 // ROTA DE CADASTRO
 app.post('/cadastro', (req, res) => {
