@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Superman - Vilões</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="menu-container">
+        <nav class="menu">
+            <a class="link" href="index.html">Home</a>
+            <a class="link" href="herois.html">Heróis</a>
+            <a class="link" href="viloes.html">Vilões</a>
+            <a class="link" href="recrutamento.html">Recrutamento</a>
+            <a class="link" href="cadastro.html">Cadastro</a>
+            <a class="link" href="chatbot.html">ChatBot</a>
+            <a class="link" href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="secao-titulo">Vilões</h1>
+        <div class="vitrine">
+            <article class="heroi">
+                <img src="imagens/lex.png" alt="Lex Luthor">
+                <h2>Lex Luthor</h2>
+                <p>O maior arqui-inimigo do Superman. Lex Luthor é um bilionário brilhante, cientista genial e CEO da LexCorp. Movido por uma inveja obsessiva e pelo ego, ele enxerga o Homem de Aço como uma ameaça ao potencial humano e usa sua imensa fortuna, tecnologia avançada e kryptonita para tentar destruí-lo.</p>
+                <button onclick="mostrarPoderes('poderes-lex')">Ver Poderes</button>
+                <ul id="poderes-lex" style="display: none; margin-top: 15px; padding-left: 20px; text-align: left;">
+                    <li>Intelecto Nível Genial</li>
+                    <li>Armaduras Tecnológicas</li>
+                    <li>Recursos Financeiros Ilimitados</li>
+                    <li>Estrategista Mestre</li>
+                    <li>Acesso à Kryptonita</li>
+                </ul>
+            </article>
+
+            <article class="heroi">
+                <img src="imagens/brainiac.png" alt="Brainiac">
+                <h2>Brainiac</h2>
+                <p>Uma das mentes mais perigosas do universo, Brainiac é um ciborgue alienígena obcecado por absorver todo o conhecimento do cosmos. Conhecido como o 'Colecionador de Mundos', ele viaja pelas galáxias encolhendo e engarrafando cidades capitais inteiras (incluindo Kandor, de Krypton) antes de destruir o resto do planeta.</p>
+                <button onclick="mostrarPoderes('poderes-brainiac')">Ver Poderes</button>
+                <ul id="poderes-brainiac" style="display: none; margin-top: 15px; padding-left: 20px; text-align: left;">
+                    <li>Intelecto de Nível Doze</li>
+                    <li>Tecnopatia e Hackeamento Mental</li>
+                    <li>Criação de Campos de Força</li>
+                    <li>Transferência de Consciência</li>
+                    <li>Exército de Clones e Sondas</li>
+                </ul>
+            </article>
+
+            <article class="heroi">
+                <img src="imagens/zod.jpg" alt="General Zod">
+                <h2>General Zod</h2>
+                <p>Líder militar impiedoso do extinto planeta Krypton. Banido para a Zona Fantasma por traição, Dru-Zod sobreviveu à destruição de seu mundo natal. Na Terra, sob o sol amarelo, ele possui exatamente os mesmos poderes que o Superman, combinados com um treinamento militar tático brutal e implacável.</p>
+                <button onclick="mostrarPoderes('poderes-zod')">Ver Poderes</button>
+                <ul id="poderes-zod" style="display: none; margin-top: 15px; padding-left: 20px; text-align: left;">
+                    <li>Fisiologia Kryptoniana Completa</li>
+                    <li>Mestre em Combate Militar</li>
+                    <li>Estrategista de Guerra</li>
+                    <li>Liderança Intimidadora</li>
+                    <li>Resistência Mental Avançada</li>
+                </ul>
+            </article>
+        </div>
+    </main>
+
+    <footer class="rodape-site">
+        <p>&copy; 2026 Card Superman. Desenvolvido por Davi Cassero - 2DAT1. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function mostrarPoderes(idLista) {
+            var lista = document.getElementById(idLista);
+            if (lista.style.display === "none") {
+                lista.style.display = "block";
+            } else {
+                lista.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

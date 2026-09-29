@@ -1,0 +1,382 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@400;700&display=swap');
+
+/* REQUISITO OBRIGATÓRIO: Variáveis :root com as cores oficiais e essência do Superman */
+:root {
+    --azul-real: #004B87;
+    --vermelho-capa: #C8102E;
+    --amarelo-escudo: #FFCD00;
+    --escuro-cinema: #0b0b0d;
+    --preto-fosco: #141414;
+    --branco: #ffffff;
+    --cinza-texto: #ccc;
+}
+
+/* ==========================================
+   CONFIGURAÇÕES GERAIS E INTERFACE
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* REQUISITO OBRIGATÓRIO: Background com linear-gradient unindo o tema escuro ao azul do herói */
+    background: linear-gradient(180deg, var(--escuro-cinema) 0%, #11111c 100%);
+    color: azure;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Mantém o rodapé sempre no final da página */
+}
+
+/* REQUISITO OBRIGATÓRIO: Menu/Header estruturado com display Flexbox */
+.menu-container {
+    position: sticky;
+    top: 0;
+    background-color: var(--preto-fosco);
+    border-bottom: 4px solid var(--vermelho-capa); /* Borda com a cor da Capa */
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.link {
+    text-decoration: none;
+    font-family: 'Bangers', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    margin: 0 20px;
+    color: var(--branco);
+    transition: color 0.2s ease-in-out, transform 0.2s;
+    display: inline-block;
+}
+
+/* REQUISITO OBRIGATÓRIO: Interação :hover nos links mudando cor e tamanho */
+.link:hover {
+    color: var(--amarelo-escudo);
+    transform: scale(1.05);
+}
+
+/* REQUISITO OBRIGATÓRIO: Títulos aplicando text-shadow temático de quadrinhos */
+.secao-titulo {
+    font-family: 'Bangers', sans-serif;
+    font-size: 3rem;
+    text-align: center;
+    margin: 40px 0 20px 0;
+    color: var(--vermelho-capa);
+    text-shadow: 2px 2px 0px var(--amarelo-escudo);
+    letter-spacing: 2px;
+}
+
+/* ==========================================
+   REQUISITO OBRIGATÓRIO: Vitrine de Cards em Display Grid
+   ========================================== */
+.vitrine {
+    display: grid;
+    /* Ajusta automaticamente as colunas, mas limita o tamanho máximo de cada card */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 450px));
+    justify-content: center; /* Centraliza os cards horizontalmente se houver apenas um na tela */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    gap: 30px;
+    width: 100%;
+}
+
+.heroi {
+    border: 3px solid var(--azul-real); /* Borda Azul Real do Traje */
+    border-radius: 12px;
+    padding: 25px;
+    background-color: var(--preto-fosco);
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    width: 100%;
+}
+
+/* Interação ao passar o mouse em cima do card do personagem */
+.heroi:hover {
+    transform: translateY(-5px);
+    border-color: var(--amarelo-escudo); /* Transiciona para Amarelo Escudo */
+}
+
+/* REQUISITO OBRIGATÓRIO MODIFICADO: Imagem centralizada sem cortes bizarros */
+.heroi img {
+    width: 100%;
+    height: 280px; /* Aumentado levemente a altura para valorizar a arte */
+    object-fit: contain; /* Mantém a proporção real da imagem */
+    background-color: #08080a; /* Fundo que combina perfeitamente com a caixa */
+    border-radius: 8px;
+    margin-bottom: 15px;
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.7)); /* REQUISITO: filter drop-shadow */
+}
+
+.heroi h2 {
+    font-family: 'Bangers', sans-serif;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    color: var(--amarelo-escudo);
+}
+
+.heroi p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    color: var(--cinza-texto);
+    text-align: center; /* Centralizado para harmonizar com a imagem centralizada */
+}
+
+/* Botão original de mostrar poderes */
+.heroi button {
+    background-color: var(--vermelho-capa);
+    color: var(--branco);
+    border: none;
+    padding: 12px 20px;
+    font-family: 'Bangers', sans-serif;
+    font-size: 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+/* REQUISITO OBRIGATÓRIO: Interação :hover mudando tamanho e cor do botão de ação */
+.heroi button:hover {
+    background-color: var(--azul-real);
+    transform: scale(1.03);
+}
+
+/* Lista estilizada de poderes abertos por JavaScript */
+.heroi ul li {
+    color: var(--amarelo-escudo);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* ==========================================
+   ESTILIZAÇÃO DO FORMULÁRIO (FLEXBOX)
+   ========================================== */
+.secao-contato {
+    max-width: 450px;
+    width: 100%;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.formulario-recrutamento {
+    background-color: var(--preto-fosco);
+    border: 2px solid var(--azul-real);
+    padding: 25px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.formulario-recrutamento input {
+    padding: 12px;
+    border: 1px solid var(--azul-real);
+    background-color: #1a1a1a;
+    color: white;
+    border-radius: 6px;
+    outline: none;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif; /* Aplica a fonte correta dentro das caixas de input */
+}
+
+/* REQUISITO OBRIGATÓRIO: Efeito :hover com mudança de escala no botão pílula do form */
+.btn-enviar {
+    background-color: var(--vermelho-capa);
+    color: white;
+    border: none;
+    padding: 12px;
+    font-family: 'Bangers', sans-serif;
+    font-size: 1.3rem;
+    border-radius: 50px; /* Formato pílula */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-enviar:hover {
+    background-color: var(--amarelo-escudo);
+    color: var(--escuro-cinema);
+    transform: scale(1.05);
+}
+
+
+/* ==========================================
+   REQUISITO OBRIGATÓRIO: Rodapé (Footer)
+   ========================================== */
+.rodape-site {
+    background-color: #000000;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #666;
+    border-top: 2px solid var(--azul-real);
+    margin-top: auto; /* Força o footer a grudar embaixo se a página tiver pouco conteúdo */
+}
+
+/* RESPONSIVIDADE PARA CELULARES */
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
+/* ==========================================
+   ESTILOS ESPECÍFICOS DO CHATBOT
+   ========================================== */
+.container-chat-superman {
+    max-width: 600px;
+    margin: 20px auto 60px auto;
+    background-color: var(--preto-fosco);
+    border: 3px solid var(--azul-real);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 75, 135, 0.3);
+}
+
+.cabecalho-chat {
+    background-color: var(--preto-fosco);
+    border-bottom: 2px solid var(--vermelho-capa);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.avatar-superman {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--amarelo-escudo);
+    object-fit: cover;
+}
+
+.cabecalho-chat h3 {
+    font-family: 'Bangers', sans-serif;
+    color: var(--amarelo-escudo);
+    letter-spacing: 1px;
+}
+
+.cabecalho-chat span {
+    font-size: 0.8rem;
+    color: #00ff00; /* Verde online */
+}
+
+.caixa-de-conversa {
+    height: 350px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.balao-mensagem {
+    max-width: 80%;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* Estilo Superman - Azul */
+.balao-mensagem.superman {
+    align-self: flex-start;
+    background-color: var(--azul-real);
+    color: var(--branco);
+    border-left: 4px solid var(--amarelo-escudo);
+}
+
+/* Estilo Usuário - Cinza escuro */
+.balao-mensagem.usuario {
+    align-self: flex-end;
+    background-color: #333;
+    color: var(--branco);
+    border-right: 4px solid var(--vermelho-capa);
+}
+
+.input-chat-area {
+    padding: 15px;
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid var(--azul-real);
+}
+
+.campo-mensagem {
+    flex: 1;
+    padding: 10px;
+    background-color: #0b0b0d;
+    border: 1px solid var(--azul-real);
+    color: var(--branco);
+    border-radius: 6px;
+    outline: none;
+    font-family: 'Roboto', sans-serif; /* Garante a fonte correta na caixa de texto do ChatBot */
+}
+
+.input-chat-area .btn-enviar {
+    width: auto; /* Ajuste para não ocupar a tela toda */
+    padding: 0 20px;
+}
+
+/* ==========================================
+   ESTILIZAÇÃO DO MODAL DE SUCESSO
+   ========================================== */
+.modal-sucesso-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85); /* Fundo escuro cobrindo tudo */
+    backdrop-filter: blur(4px); /* Suave desfoque ao fundo */
+    display: none; /* Controlado dinamicamente para 'flex' via JS */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Sobrepõe toda a interface */
+}
+
+.modal-sucesso-conteudo {
+    background-color: var(--preto-fosco);
+    border: 3px solid var(--amarelo-escudo); /* Detalhes na cor do escudo */
+    padding: 35px 40px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0px 0px 25px rgba(255, 205, 0, 0.4);
+    max-width: 420px;
+    width: 90%;
+}
+
+.modal-sucesso-conteudo h2 {
+    font-family: 'Bangers', sans-serif;
+    color: var(--amarelo-escudo);
+    font-size: 2.6rem;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.modal-sucesso-conteudo p {
+    color: var(--branco);
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.modal-sucesso-subtexto {
+    color: var(--cinza-texto) !important;
+    font-size: 0.9rem !important;
+    font-style: italic;
+    margin-top: 5px;
+}

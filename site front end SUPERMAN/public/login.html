@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Superman</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="categoria-page">
+    <header class="menu-container">
+        <nav class="menu">
+            <a class="link" href="index.html">Home</a>
+            <a class="link" href="herois.html">Heróis</a>
+            <a class="link" href="viloes.html">Vilões</a>
+            <a class="link" href="recrutamento.html">Recrutamento</a>
+            <a class="link" href="cadastro.html">Cadastro</a>
+            <a class="link" href="chatbot.html">ChatBot</a>
+            <a class="link" href="login.html" style="color: var(--amarelo-escudo);">Login</a>
+        </nav>
+    </header>
+
+    <main class="categoria-main">
+        <section class="secao-contato">
+            <h2 class="secao-titulo">Acesso ao Metrópolis</h2>
+            <form id="form-login" class="formulario-recrutamento">
+                <input id="email" type="email" placeholder="E-mail" required>
+                <input id="senha" type="password" placeholder="Senha" required>
+                <button type="submit" class="btn-enviar">Entrar</button>
+            </form>
+            <p id="mensagem-login" style="margin-top: 15px; text-align: center; color: var(--amarelo-escudo);"></p>
+        </section>
+    </main>
+
+    <footer class="rodape-site">
+        <p>&copy; 2026 Card Superman. Desenvolvido por Davi Cassero - 2DAT1. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const formLogin = document.getElementById('form-login');
+        const mensagemLogin = document.getElementById('mensagem-login');
+
+        function mostrarMensagem(texto, tipo) {
+            mensagemLogin.textContent = texto;
+            mensagemLogin.classList.remove('sucesso', 'erro');
+            mensagemLogin.classList.add(tipo);
+        }
+
+        formLogin.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value.trim();
+            const senha = document.getElementById('senha').value.trim();
+
+            const resposta = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, senha })
+            });
+
+            const dados = await resposta.json();
+
+            if (resposta.ok) {
+                localStorage.setItem('supermanUser', dados.usuario);
+                mostrarMensagem(`Login realizado com sucesso! Bem-vindo, ${dados.usuario}!`, 'sucesso');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            } else {
+                mostrarMensagem(dados.erro || 'Erro ao fazer login.', 'erro');
+            }
+        });
+    </script>
+</body>
+</html>

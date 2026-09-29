@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Superman - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="menu-container">
+        <nav class="menu">
+            <a class="link" href="index.html" style="color: var(--amarelo-escudo);">Home</a>
+            <a class="link" href="herois.html">Heróis</a>
+            <a class="link" href="viloes.html">Vilões</a>
+            <a class="link" href="recrutamento.html">Recrutamento</a>
+            <a class="link" href="cadastro.html">Cadastro</a>
+            <a class="link" href="chatbot.html">ChatBot</a>
+            <a class="link" href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="usuario-status" id="usuario-status" style="max-width: 1200px; margin: 25px auto 0; padding: 0 20px; display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <span id="status-texto" style="font-weight: 700; color: var(--amarelo-escudo);">Você ainda não entrou no Metrópolis.</span>
+            <button id="btn-sair" class="btn-enviar" style="display: none; width: auto; padding: 10px 18px; border-radius: 999px;">Sair</button>
+        </div>
+
+        <h1 class="secao-titulo">O Homem de Aço</h1>
+        <div class="vitrine">
+            <article class="heroi">
+                <img src="imagens/superman.jpg.jpg" alt="Superman">
+                <h2>Superman</h2>
+                <p>Nascido no planeta Krypton e criado na Terra como Clark Kent, o Superman possui força sobre-humana, velocidade, visão de calor e a capacidade de voar. O Homem de Aço usa seus poderes divinos sob a luz do sol amarelo para proteger a humanidade e lutar pela verdade e pela justiça.</p>
+                <button onclick="mostrarPoderes('poderes-superman')">Ver Poderes</button>
+                <ul id="poderes-superman" style="display: none; margin-top: 15px; padding-left: 20px; text-align: left;">
+                    <li>Força Sobre-humana</li>
+                    <li>Voo e Supervelocidade</li>
+                    <li>Visão de Calor e Raio-X</li>
+                    <li>Sopro Congelante</li>
+                    <li>Invulnerabilidade</li>
+                </ul>
+            </article>
+        </div>
+    </main>
+
+    <footer class="rodape-site">
+        <p>&copy; 2026 Card Superman. Desenvolvido por Davi Cassero - 2DAT1. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function mostrarPoderes(idLista) {
+            var lista = document.getElementById(idLista);
+            if (lista.style.display === "none") {
+                lista.style.display = "block";
+            } else {
+                lista.style.display = "none";
+            }
+        }
+
+        const statusTexto = document.getElementById('status-texto');
+        const botaoSair = document.getElementById('btn-sair');
+
+        function atualizarStatusUsuario() {
+            const usuario = localStorage.getItem('supermanUser');
+
+            if (usuario) {
+                statusTexto.textContent = `Bem-vindo(a), ${usuario}!`;
+                botaoSair.style.display = 'inline-block';
+            } else {
+                statusTexto.textContent = 'Você ainda não entrou no Metrópolis.';
+                botaoSair.style.display = 'none';
+            }
+        }
+
+        botaoSair.addEventListener('click', () => {
+            localStorage.removeItem('supermanUser');
+            atualizarStatusUsuario();
+        });
+
+        atualizarStatusUsuario();
+    </script>
+</body>
+</html>

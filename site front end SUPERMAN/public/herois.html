@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Superman - Heróis</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="menu-container">
+        <nav class="menu">
+            <a class="link" href="index.html">Home</a>
+            <a class="link" href="herois.html" style="color: var(--amarelo-escudo);">Heróis</a>
+            <a class="link" href="viloes.html">Vilões</a>
+            <a class="link" href="recrutamento.html">Recrutamento</a>
+            <a class="link" href="cadastro.html">Cadastro</a>
+            <a class="link" href="chatbot.html">ChatBot</a>
+            <a class="link" href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="secao-titulo">Heróis e Aliados</h1>
+        <div class="vitrine">
+            <article class="heroi">
+                <img src="imagens/lana.jpg" alt="Lana Lang">
+                <h2>Lana Lang</h2>
+                <p>A paixão de infância e juventude de Clark Kent em Smallville. Lana é uma das primeiras confidentes a descobrir o segredo de Clark. Em algumas realidades dos quadrinhos (como a Superwoman), ela adquire poderes através de radiação solar residual, manifestando habilidades de manipulação e transformação de energia elétrica.</p>
+                <button onclick="mostrarPoderes('poderes-lana')">Ver Poderes</button>
+                <ul id="poderes-lana" style="display: none; margin-top: 15px; padding-left: 20px; text-align: left;">
+                    <li>Conversão de Energia Solar</li>
+                    <li>Disparos Elétricos e Plasmáticos</li>
+                    <li>Voo Aero-Cinético</li>
+                    <li>Grande Conhecimento Científico</li>
+                    <li>Intuição Aguçada</li>
+                </ul>
+            </article>
+
+            <article class="heroi">
+                <img src="imagens/supergirl.jpg" alt="Supergirl">
+                <h2>Supergirl</h2>
+                <p>Kara Zor-El é a prima biológica do Superman, vinda diretamente de Argo City, um fragmento sobrevivente de Krypton. Sob o sol amarelo da Terra, ela manifesta exatamente os mesmos poderes impressionantes de seu primo, mas com uma personalidade jovem, vibrante e uma determinação feroz para proteger o mundo.</p>
+                <button onclick="mostrarPoderes('poderes-supergirl')">Ver Poderes</button>
+                <ul id="poderes-supergirl" style="display: none; margin-top: 15px; padding-left: 20px; text-align: left;">
+                    <li>Força Sobre-humana</li>
+                    <li>Voo e Supervelocidade</li>
+                    <li>Visão de Calor e Raio-X</li>
+                    <li>Sopro Congelante</li>
+                    <li>Invulnerabilidade</li>
+                </ul>
+            </article>
+        </div>
+    </main>
+
+    <footer class="rodape-site">
+        <p>&copy; 2026 Card Superman. Desenvolvido por Davi Cassero - 2DAT1. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function mostrarPoderes(idLista) {
+            var lista = document.getElementById(idLista);
+            if (lista.style.display === "none") {
+                lista.style.display = "block";
+            } else {
+                lista.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

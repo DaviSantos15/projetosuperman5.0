@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat com Superman - Metrópolis</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="menu-container">
+        <nav class="menu">
+            <a href="index.html" class="link">Home</a>
+            <a href="herois.html" class="link">Heróis</a>
+            <a href="viloes.html" class="link">Vilões</a>
+            <a href="recrutamento.html" class="link">Recrutamento</a>
+            <a href="cadastro.html" class="link">Cadastro</a>
+            <a href="chatbot.html" class="link" style="color: var(--amarelo-escudo);">ChatBot</a>
+            <a href="login.html" class="link">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="secao-titulo">SINAL DE METRÓPOLIS</h1>
+
+        <section class="container-chat-superman">
+            <div class="cabecalho-chat">
+                <img src="imagens/superman.jpg.jpg" alt="Superman" class="avatar-superman">
+                <div>
+                    <h3>Superman</h3>
+                    <span>Online agora</span>
+                </div>
+            </div>
+
+            <div class="caixa-de-conversa">
+                <div class="balao-mensagem superman">
+                    <p>Olá, cidadão! Identifiquei seu sinal. Como posso ajudar Metrópolis hoje?</p>
+                </div>
+
+                <div class="balao-mensagem usuario">
+                    <p>Superman, o Lex Luthor foi avistado perto do porto!</p>
+                </div>
+            </div>
+
+            <div class="input-chat-area">
+                <input type="text" placeholder="Escreva sua mensagem para o herói..." class="campo-mensagem">
+                <button class="btn-enviar">ENVIAR</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape-site">
+        <p>&copy; 2026 Card Superman. Desenvolvido por Davi Cassero - 2DAT1. Todos os direitos reservados.</p>        
+    </footer>
+
+    <script>
+        const historico = [];
+        const campoMensagem = document.querySelector('.campo-mensagem');
+        const caixaConversa = document.querySelector('.caixa-de-conversa');
+        const botaoEnviar = document.querySelector('.btn-enviar');
+
+        function adicionarMensagem(remetente, texto) {
+            const tipo = remetente === 'superman' ? 'superman' : 'usuario';
+            caixaConversa.insertAdjacentHTML('beforeend', `<div class="balao-mensagem ${tipo}"><p>${texto}</p></div>`);
+            caixaConversa.scrollTop = caixaConversa.scrollHeight;
+        }
+
+        async function enviarMensagem() {
+            const content = campoMensagem.value.trim();
+            if (!content) return;
+
+            historico.push({ role: 'user', content });
+            adicionarMensagem('usuario', content);
+            campoMensagem.value = '';
+            campoMensagem.disabled = true;
+            botaoEnviar.disabled = true;
+            botaoEnviar.textContent = 'PENSANDO...';
+
+            try {
+                const resposta = await fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ historico })
+                });
+
+                const dados = await resposta.json();
+
+                if (!resposta.ok) {
+                    throw new Error(dados.erro || 'Não foi possível responder no momento.');
+                }
+
+                historico.push({ role: 'assistant', content: dados.resposta });
+                adicionarMensagem('superman', dados.resposta);
+            } catch (erro) {
+                adicionarMensagem('superman', erro.message || 'Não consegui processar sua mensagem no momento.');
+            } finally {
+                campoMensagem.disabled = false;
+                botaoEnviar.disabled = false;
+                botaoEnviar.textContent = 'ENVIAR';
+                campoMensagem.focus();
+            }
+        }
+
+        botaoEnviar.addEventListener('click', enviarMensagem);
+
+        campoMensagem.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                enviarMensagem();
+            }
+        });
+    </script>
+</body>
+</html>

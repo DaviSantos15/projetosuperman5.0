@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Superman</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="categoria-page">
+    <header class="menu-container">
+        <nav class="menu">
+            <a class="link" href="index.html">Home</a>
+            <a class="link" href="herois.html">Heróis</a>
+            <a class="link" href="viloes.html">Vilões</a>
+            <a class="link" href="recrutamento.html">Recrutamento</a>
+            <a class="link" href="cadastro.html" style="color: var(--amarelo-escudo);">Cadastro</a>
+            <a class="link" href="chatbot.html">ChatBot</a>
+            <a class="link" href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <main class="categoria-main">
+        <section class="secao-contato">
+            <h2 class="secao-titulo">Cadastro da Liga</h2>
+            <form id="form-cadastro" class="formulario-recrutamento">
+                <input id="usuario" type="text" placeholder="Nome de usuário" required>
+                <input id="email" type="email" placeholder="E-mail" required>
+                <input id="senha" type="password" placeholder="Senha (mínimo 6 caracteres)" required>
+                <button type="submit" class="btn-enviar">Cadastrar</button>
+            </form>
+            <p id="mensagem-cadastro" style="margin-top: 15px; text-align: center; color: var(--amarelo-escudo);"></p>
+        </section>
+    </main>
+
+    <footer class="rodape-site">
+        <p>&copy; 2026 Card Superman. Desenvolvido por Davi Cassero - 2DAT1. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const formCadastro = document.getElementById('form-cadastro');
+        const mensagemCadastro = document.getElementById('mensagem-cadastro');
+
+        function mostrarMensagem(texto, tipo) {
+            mensagemCadastro.textContent = texto;
+            mensagemCadastro.classList.remove('sucesso', 'erro');
+            mensagemCadastro.classList.add(tipo);
+        }
+
+        formCadastro.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const usuario = document.getElementById('usuario').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const senha = document.getElementById('senha').value.trim();
+
+            const resposta = await fetch('/cadastro', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ usuario, email, senha })
+            });
+
+            const dados = await resposta.json();
+
+            if (resposta.ok) {
+                localStorage.removeItem('supermanUser');
+                mostrarMensagem('Cadastro realizado com sucesso! Agora faça seu login para entrar no Metrópolis.', 'sucesso');
+                formCadastro.reset();
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 1800);
+            } else {
+                mostrarMensagem(dados.erro || 'Erro ao cadastrar.', 'erro');
+            }
+        });
+    </script>
+</body>
+</html>
