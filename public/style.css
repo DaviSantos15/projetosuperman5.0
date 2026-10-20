@@ -224,15 +224,6 @@ body {
     margin-top: auto; /* Força o footer a grudar embaixo se a página tiver pouco conteúdo */
 }
 
-/* RESPONSIVIDADE PARA CELULARES */
-@media (max-width: 768px) {
-    .menu {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-}
-
 /* ==========================================
    ESTILOS ESPECÍFICOS DO CHATBOT
    ========================================== */
@@ -240,10 +231,11 @@ body {
     max-width: 600px;
     margin: 20px auto 60px auto;
     background-color: var(--preto-fosco);
-    border: 3px solid var(--azul-real);
+    /* Borda alterada conforme solicitado (amarelo escudo) */
+    border: 3px solid var(--amarelo-escudo);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 75, 135, 0.3);
+    box-shadow: 0 0 20px rgba(255, 205, 0, 0.2);
 }
 
 .cabecalho-chat {
@@ -379,4 +371,29 @@ body {
     font-size: 0.9rem !important;
     font-style: italic;
     margin-top: 5px;
+}
+
+/* RESPONSIVIDADE PARA CELULARES */
+@media (max-width: 480px) {
+    .menu {
+        display: flex;
+        flex-wrap: wrap;       /* Permite que os links fiquem lado a lado e dobrem de linha */
+        justify-content: center;
+        align-items: center;
+        gap: 10px 15px;        
+        padding: 12px 10px;
+        width: 100%;
+    }
+
+    .link {
+        font-size: 1.1rem;     
+        margin: 0;             
+        letter-spacing: 1px;
+    }
+
+    /* Ajuste do chatbot para não quebrar em telas pequenas */
+    .container-chat-superman {
+        max-width: 92%;
+        margin: 15px auto;
+    }
 }
